@@ -201,3 +201,7 @@
 // } else {
 //   console.log('Canceled by user');
 // }
+
+const str = 'jshdgfshj sdfgsdfgsmy-sitegs sdfgsdfgs';
+
+console.log(str.includes('my-site'));

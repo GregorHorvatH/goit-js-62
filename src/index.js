@@ -1,206 +1,242 @@
-// --- question ---
-// const total = 55;
+// import { sum, multiple } from './utils.js';
 
-// console.log('total:', total);
+// let x = 5;
+// let y = 5;
 
-// --- question ---
-// const redFruits = ['apple', 'strawberry', 'cherry', 'cranberries'];
-// const fruit = 'cherry';
-// // Проверяем наличие элемента
-// const hasFruit = redFruits.includes(fruit); // true|false
+// console.log(sum(x, y));
+// console.log(sum(23, 56));
 
-// if (hasFruit) {
-//   console.log(`${fruit} is a red fruit!`);
+// console.log(multiple(4, 2));
+
+// --- function expression ---
+// const fn = function fn() {
+//   console.log('hello');
+// };
+
+// fn();
+
+// function fn() {
+// ...
+// return undefined;
 // }
 
-// --- question ---
-// const clients = ['Mango', 'Poly', 'Ajax'];
-// const clientNameToFind = 'Poly';
-// let message;
+// console.log(fn());
 
-// for (const client of clients) {
-//   if (client === clientNameToFind) {
-//     message = "Клієнт з таким ім'ям є в базі даних!";
-//     break;
-//   }
-//   message = "Клієнт з таким ім'ям відсутній в базі даних!";
+// Example 1 - Индекс массы тела
+// Напиши функцию calcBMI(weight, height) которая рассчитывает и возвращает индекс массы тела человека. Для этого необходимо разделить вес в киллограммах на квадрат высоты человека в метрах.
+
+// Вес и высота будут специально переданы как строки. Нецелые числа могут быть заданы в виде 24.7 или 24,7, то есть в качестве разделителя дробной части может быть запятая.
+
+// Индекс массы тела необходимо округлить до одной цифры после запятой;
+
+// function calcBMI(weight, height) {
+//   const weightNum = Number(weight.replace(',', '.'));
+//   const heightNum = Number(height.replace(',', '.'));
+
+//   return Number((weightNum / Math.pow(heightNum, 2)).toFixed(1));
 // }
 
-// console.log(message);
+// const bmi = calcBMI('88,3', '1.75');
+// console.log(bmi); // 28.8
 
-// Example 1 - Базовые операции с массивом
-// Создайте массив genres с элементами «Jazz» и «Blues».
-// Добавьте «Рок-н-ролл» в конец.
-// Выведите в консоль первый элемент массива.
-// Выведите в консоль последний элемент массива. Код должен работать для массива произвольной длины.
-// Удалите первый элемент и выведите его в консоль.
-// Вставьте «Country» и «Reggae» в начало массива.
+// Example 2 - Меньшее из чисел
+// Напиши функцию min(a,b), которая возвращает меньшее из чисел a и b.
 
-// const genres = ['Jazz', 'Blues'];
-// genres.push('Рок-н-ролл');
-
-// console.log(genres[0]);
-// console.log(genres[genres.length - 1]);
-
-// console.log(genres.shift());
-// console.log(genres);
-
-// genres.unshift('Country', 'Reggae');
-// console.log(genres);
-
-// Example 2 - Массивы и строки
-// Напиши скрипт для вычисления площади прямоугольника со сторонами, значения которых хранятся в переменной values в виде строки. Значения гарантированно разделены пробелом.
-
-// const values = '8 11';
-// const arr = values.split(' ');
-// const [width, height] = arr;
-
-// // const width = arr[0];
-// // const height = arr[1];
-
-// const area = Number(width) * Number(height);
-
-// console.log(area);
-
-// Example 3 - Перебор массива
-// Напиши скрипт для перебора массива fruits циклом for. Для каждого элемента массива выведи в консоль строку в формате номер_элемента: значение_элемента. Нумерация элементов должна начинаться с 1.
-
-// const fruits = ['🍎', '🍇', '🍑', '🍌', '🍋'];
-
-// for (let i = 0; i < fruits.length; i += 1) {
-//   console.log(`${i + 1}: ${fruits[i]}`);
+// function min(a, b) {
+//   return a < b ? a : b;
 // }
 
-// Example 4 - Массивы и циклы
-// Напиши скрипт который выводит в консоль имя и телефонный номер пользователя. В переменных names и phones хранятся строки имен и телефонных номеров, разделенные запятыми. Порядковый номер имен и телефонов в строках указывают на соответствие. Количество имен и телефонов гарантированно одинаковое.
+// const min = (a, b) => (a < b ? a : b);
 
-// const names = 'Jacob,William,Solomon,Artemis';
-// const phones = '89001234567,89001112233,890055566377,890055566300';
+// console.log(min(2, 5)); // 2
+// console.log(min(3, -1)); // -1
+// console.log(min(1, 1)); // 1
 
-// const namesArr = names.split(',');
-// const phonesArr = phones.split(',');
+// Example 3 - Площадь прямоугольника
+// Напиши функцию getRectArea(dimensions) для вычисления площади прямоугольника со сторонами, значения которых будут переданы в параметр dimensions в виде строки. Значения гарантированно разделены пробелом.
 
-// for (let i = 0; i < namesArr.length; i += 1) {
-//   console.log(`${namesArr[i]}: ${phonesArr[i]}`);
+// function getRectArea(dimensions) {
+//   const arr = dimensions.split(' ');
+//   const [a, b] = arr;
+
+//   // const a = arr[0];
+//   // const b = arr[1];
+
+//   return Number(a) * Number(b);
 // }
 
-// Example 5 - Массивы и строки
-// Напиши скрипт который выводит в консоль все слова строки кроме первого и последнего. Результирующая строка не должна начинаться или заканчиваться пробельным символом. Скрипт должен работать для любой строки.
+// console.log(getRectArea('8 11'));
+// console.log(getRectArea('2 5'));
 
-// const string = 'Welcome to the future';
-// const arr = string.split(' ');
+// Example 4 - Логирование элементов
+// Напиши функцию logItems(items), которая получает массив и использует цикл for, который для каждого элемента массива будет выводить в консоль сообщение в формате <номер элемента> - <значение элемента>. Нумерация элементов должна начинаться с 1.
 
-// arr.shift();
-// arr.pop();
+// Например для первого элемента массива ['Mango', 'Poly', 'Ajax'] с индексом 0 будет выведено 1 - Mango, а для индекса 2 выведет 3 - Ajax.
 
-// console.log(arr.join(' '));
-
-// --- question ---
-// function bar() {
-//   console.log('bar'); // 2
-// }
-
-// function baz() {
-//   console.log('baz'); // 3
-// }
-
-// function foo() {
-//   console.log('foo'); // 1
-
-//   bar(); // 2
-//   baz(); // 3
-// }
-
-// foo(); // 1
-
-// --- Example 6 - Массивы и строки
-// Напиши скрипт который «разворачивает» строку (обратный порядок букв) и выводит ее в консоль.
-
-// --- v. 1 ---
-// const string = 'Welcome to the future';
-// const arr = string.split('');
-// const reversedArr = arr.reverse();
-// const reversedString = reversedArr.join('');
-
-// console.log(reversedString);
-
-// --- v. 2 ---
-// const string = 'Welcome to the future';
-// const reversedString = string.split('').reverse().join('');
-
-// console.log(reversedString);
-
-// --- v. 3 ---
-// const string = 'Welcome to the future';
-// let reversedString = '';
-
-// for (let i = string.length - 1; i >= 0; i -= 1) {
-//   reversedString += string[i];
-// }
-
-// console.log(reversedString);
-
-// --- v. 4 ---
-// const string = 'Welcome to the future';
-// const words = string.split(' ');
-
-// for (let i = 0; i < words.length; i += 1) {
-//   words[i] = words[i].split('').reverse().join('');
-// }
-
-// console.log(words.join(' '));
-
-// Example 8 - Поиск элемента
-// Напиши скрипт поиска самого маленького числа в массиве. Код должен работать для любого массива чисел. Используй цикл для решения задачи.
-
-// const numbers = [2, 17, 94, 1, 23, 37];
-// let min = numbers[0];
-// let max = numbers[0];
-
-// for (const number of numbers) {
-//   if (number < min) {
-//     min = number;
-//   }
-//   if (number > max) {
-//     max = number;
+/**
+ * Log items passed in array
+ * @param {string[] | number[]} items
+ */
+// function logItems(items) {
+//   for (let i = 0; i < items.length; i += 1) {
+//     console.log(`${i + 1} - ${items[i]}`);
 //   }
 // }
 
-// console.log(min); // 1
-// console.log(max); // 94
+// logItems(['Mango', 'Poly', 'Ajax']);
+// logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+// logItems([
+//   34553,
+//   57575,
+//   12123,
+//   789879,
+//   undefined,
+//   NaN,
+//   null,
+//   { name: 'Bobby' },
+// ]);
 
-// Example 7 - Сортировка массива с циклом
-// Напиши скрипт сортировки массива строк в алфавитном порядке по первой букве элемента.
+// Example 5 - Логирование контактов
+// Напиши функцию printContactsInfo(names, phones) которая выводит в консоль имя и телефонный номер пользователя. В параметры names и phones будут переданы строки имен и телефонных номеров, разделенные запятыми. Порядковый номер имен и телефонов в строках указывают на соответствие. Количество имен и телефонов гарантированно одинаковое.
 
-// const langs = ['python', 'javascript', 'c++', 'haskel', 'php', 'ruby'];
+// function printContactsInfo(names, phones) {
+//   const namesArr = names.split(',');
+//   const phonesArr = phones.split(',');
+//   let i = 0;
 
-// for (let i = 0; i < langs.length - 1; i += 1) {
-//   for (let j = i + 1; j < langs.length; j += 1) {
-//     const word1 = langs[i];
-//     const word2 = langs[j];
+//   for (const name of namesArr) {
+//     console.log(name, phonesArr[i++]);
+//   }
 
-//     if (word1[0] > word2[0]) {
-//       langs[i] = word2;
-//       langs[j] = word1;
+//   // for (let i = 0; i < namesArr.length; i += 1) {
+//   //   console.log(namesArr[i], phonesArr[i]);
+//   // }
+// }
+
+// printContactsInfo(
+//   'Jacob,William,Solomon,Artemis',
+//   '89001234567,89001112233,890055566377,890055566300'
+// );
+
+// Example 6 - Поиск наибольшего элемента
+// Напиши функцию findLargestNumber(numbers)которая ищет самое большое число в массиве.
+
+/**
+ * Find Largest Number in the array
+ * @param {number[]} numbers
+ */
+// function findLargestNumber(numbers) {
+//   let max = numbers[0];
+
+//   for (const number of numbers) {
+//     if (number > max) {
+//       max = number;
 //     }
 //   }
+
+//   return max;
+
+//   // return Math.max(...numbers);
 // }
 
-// console.log(langs);
+// console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
+// console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
 
-// --- quick sort ---
-// function quicksort(arr) {
-//   if (arr.length < 2) return arr;
+// Example 7 - Среднее значение
+// Напишите функцию calAverage() которая принимает произвольное кол-во аргументов и возвращает их среднее значение. Все аругменты будут только числами.
 
-//   const pivot = arr[0];
-//   const left = [];
-//   const right = [];
+// function calAverage() {
+//   let sum = 0;
 
-//   for (let i = 1; i < arr.length; i += 1) {
-//     arr[i] < pivot ? left.push(arr[i]) : right.push(arr[i]);
+//   for (const num of arguments) {
+//     sum += num;
 //   }
 
-//   return quicksort(left).concat(pivot, quicksort(right));
+//   return sum / arguments.length;
 // }
 
-// console.log(quicksort([2, 5, 3, 0, 6, 1, 4]));
+// console.log(calAverage(1, 2, 3, 4)); // 2.5
+// console.log(calAverage(14, 8, 2)); // 8
+// console.log(calAverage(27, 43, 2, 8, 36)); // 23.2
+
+// Example 8 - Форматирование времени
+// Напиши функцию formatTime(minutes) которая переведёт значение minutes (количество минут) в строку в формате часов и минут HH:MM.
+
+// const hours = Math.floor(totalMinutes / 60);
+// const minutes = totalMinutes % 60;
+// console.log(hours);
+// console.log(minutes);
+
+// const doubleDigitHours = String(hours).padStart(2, 0);
+// const doubleDigitMinutes = String(minutes).padStart(2, 0);
+// console.log(`${doubleDigitHours}:${doubleDigitMinutes}`);
+
+// function formatTime(totalMinutes) {
+//   const hours = Math.floor(totalMinutes / 60);
+//   const minutes = totalMinutes % 60;
+
+//   const doubleDigitHours = String(hours).padStart(2, 0);
+//   const doubleDigitMinutes = String(minutes).padStart(2, 0);
+
+//   return `${doubleDigitHours}:${doubleDigitMinutes}`;
+// }
+
+// console.log(formatTime(70)); // "01:10"
+// console.log(formatTime(450)); // "07:30"
+// console.log(formatTime(1441)); // "24:01"
+
+// Example 9 - Коллекция курсов (includes, indexOf, push и т. д.)
+// Напишите функции для работы с коллекцией обучающих курсов courses:
+
+// addCourse(name) - добавляет курс в конец коллекции
+// removeCourse(name) - удаляет курс из коллекции
+// updateCourse(oldName, newName) - изменяет имя на новое
+
+const courses = ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL'];
+
+function addCourse(name) {
+  if (courses.includes(name)) {
+    console.log('У вас уже есть такой курс');
+    return;
+  }
+
+  courses.push(name);
+}
+
+function removeCourse(name) {
+  const idx = courses.indexOf(name);
+
+  if (idx === -1) {
+    console.log('Курс с таким имененем не найден');
+    return;
+  }
+
+  courses.splice(idx, 1);
+}
+
+function updateCourse(oldName, newName) {
+  const idx = courses.indexOf(oldName);
+
+  if (idx === -1) {
+    console.log('Курс с таким имененем не найден');
+    return;
+  }
+
+  courses.splice(idx, 1, newName);
+}
+
+addCourse('Express');
+console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL', 'Express']
+
+addCourse('CSS'); // 'У вас уже есть такой курс'
+console.log(courses);
+
+removeCourse('React');
+console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'Express']
+
+removeCourse('Vue'); // 'Курс с таким имененем не найден'
+console.log(courses);
+
+updateCourse('Express', 'NestJS');
+console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
+updateCourse('Express', 'NestJS'); // 'Курс с таким имененем не найден'

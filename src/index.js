@@ -1,141 +1,211 @@
-import { cars } from './cars.js';
+'use strict';
 
-// Example 1 - Метод map
-// Пусть функция getModels возвращает массив моделей (поле model) всех автомобилей.
+// const fn = () => {
+//   console.log(this);
+// };
 
-// const getModels = (cars) => cars.map((car) => car.model);
-// console.table(getModels(cars));
+// const obj = {
+//   name: 'Bobby',
+//   age: 15,
 
-// Example 2 - Метод map
-// Пусть функция makeCarsWithDiscount возвращает новый массив объектов с изменным значением свойства price в зависимости от переданной скидки.
+//   sayHello(name) {
+//     console.log(this);
+//     console.log(`Hello ${name}`);
+//     // fn(); // undefined
+//   },
+// };
 
-// const makeCarsWithDiscount = (cars, discount) =>
-//   cars.map((car) => ({
-//     model: car.model,
-//     price: car.price,
-//     priceWithDicsount: car.price - car.price * discount,
-//   }));
+// obj.sayHello(); // { name: 'Bobby' ... }
 
-// console.table(makeCarsWithDiscount(cars, 0.2));
-// console.table(makeCarsWithDiscount(cars, 0.4));
+// const fn = function sayHello() {
+//   console.log(this);
+// };
 
-// Example 3 - Метод filter
-// Пусть функция filterByPrice возвращает массив автомобилей цена которых меньше чем значение параметра threshold.
+// const fn = obj.sayHello;
+// fn(); // undefined
 
-// const filterByPrice = (cars, threshold) =>
-//   cars.filter(({ price }) => price < threshold);
+// setTimeout(obj.sayHello, 2000);
 
-// console.table(filterByPrice(cars, 30000));
-// console.table(filterByPrice(cars, 25000));
+// obj.sayHello();
+// const fn = obj.sayHello;
+// fn.call(obj); // undefined
+// fn.apply(obj); // undefined
 
-// Example 4 - Метод filter
-// Пусть функция getCarsWithDiscount возвращает массив автомобилей свойство onSale которых true.
+// const fn = obj.sayHello.bind(obj);
+// fn();
 
-// const getCarsWithDiscount = (cars) => cars.filter(({ onSale }) => onSale);
+// setTimeout(obj.sayHello.bind(obj), 2000);
 
-// console.table(getCarsWithDiscount(cars));
+// --- own bind ---
+// function bind(callback, context) {
+//   return function (...args) {
+//     callback.apply(context, args);
+//   };
+// }
 
-// Example 5 - Метод filter
-// Пусть функция getCarsWithType возвращает массив автомобилей тип которых совпадает со значением параметра type.
+// const fn = bind(obj.sayHello, obj); // function () {...}
+// fn('Bobby');
 
-// const getCarsWithType = (cars, carType) =>
-//   cars.filter(({ type }) => type === carType);
+// Example 1 - Мастерская драгоценностей
+// Напишите метод calcTotalPrice(stoneName), который принимает название камня и рассчитывает и возвращает общую стоимость камней с таким именем, ценой и количеством из свойства stones.
 
-// console.table(getCarsWithType(cars, 'suv'));
-// console.table(getCarsWithType(cars, 'sedan'));
+// const chopShop = {
+//   stones: [
+//     { name: 'Emerald', price: 1300, quantity: 4 },
+//     { name: 'Diamond', price: 2700, quantity: 3 },
+//     { name: 'Sapphire', price: 1400, quantity: 7 },
+//     { name: 'Ruby', price: 800, quantity: 2 },
+//   ],
 
-// Example 6 - Метод find
+//   calcTotalPrice(stoneName) {
+//     const { price, quantity } = this.stones.find(
+//       (item) => item.name === stoneName
+//     );
 
-// const getCarByModel = (cars, carModel) =>
-//   cars.find(({ model }) => model === carModel);
+//     return price * quantity;
+//   },
+// };
 
-// console.log(getCarByModel(cars, 'F-150'));
-// console.log(getCarByModel(cars, 'CX-9'));
+// console.log(chopShop.calcTotalPrice('Emerald')); // 5200
+// console.log(chopShop.calcTotalPrice('Diamond')); // 8100
+// console.log(chopShop.calcTotalPrice('Sapphire')); // 9800
+// console.log(chopShop.calcTotalPrice('Ruby')); // 1600
 
-// const fn = () => ({ name: 'Bobby' });
+// Example 2 - Телефонная книга
+// Выполните рефакторинг методов объекта phonebook чтобы код заработал.
 
-// console.log(fn());
+// const phonebook = {
+//   contacts: [],
 
-// --- sort ---
-// const numbers = [2, 5, 200, 9, 21, 3, 8, 1, 0, 4, 6, 10, 7, 20];
+//   add(contact) {
+//     const newContact = {
+//       list: 'default',
+//       ...contact,
+//       id: this.generateId(),
+//       createdAt: this.getDate(),
+//     };
+//     this.contacts.push(newContact);
+//   },
 
-// // numbers.sort((a, b) => a - b);
-// numbers.sort((a, b) => {
-//   if (a < b) return -1; // a - b = -3
-//   if (a > b) return 1; // a - b = 191
+//   generateId() {
+//     return '_' + Math.random().toString(36).substr(2, 9);
+//   },
 
-//   return 0; // a - b = 0
+//   getDate() {
+//     return Date.now();
+//   },
+// };
+
+// phonebook.add({
+//   name: 'Mango',
+//   email: 'mango@mail.com',
+//   list: 'friends',
 // });
 
-// console.log(numbers);
+// phonebook.add({
+//   name: 'Poly',
+//   email: 'poly@hotmail.com',
+// });
 
-// Example 7 - Метод sort
-// Пусть функция sortByAscendingAmount возвращает новый массив автомобилей отсортированный по возврастанию значения свойства amount.
+// console.log(phonebook.contacts);
 
-// const sortByAscendingAmount = (cars) =>
-//   cars.sort((a, b) => a.amount - b.amount);
+// Example 3 - Калькулятор
+// Создайте объект calculator с тремя методами:
 
-// console.table(sortByAscendingAmount(cars));
+// read(a, b)- принимает два значения и сохраняет их как свойства объекта.
+// add() - возвращает сумму сохранённых значений.
+// mult() - перемножает сохранённые значения и возвращает результат.
 
-// Example 8 - Метод sort
-// Пусть функция sortByDescendingPrice возвращает новый массив автомобилей отсортированный по убыванию значения свойства price.
+// const calculator = {
+//   a: 0,
+//   b: 0,
 
-// const sortByDescendingPrice = (cars) => cars.sort((a, b) => b.price - a.price);
+//   read(a, b) {
+//     this.a = a;
+//     this.b = b;
+//   },
 
-// console.table(sortByDescendingPrice(cars));
+//   add() {
+//     return this.a + this.b;
+//   },
 
-// Example 9 - Метод sort
-// Пусть функция sortByModel возвращает новый массив автомобилей отсортированный по названию модели в алфавитном и обратном алфавитном порядке, в засисимости от значения параметра order.
-
-// const sortByModel = (cars, order) => {
-//   if (order === 'asc') {
-//     return cars.sort((a, b) => a.model.localeCompare(b.model));
-//   } else if (order === 'desc') {
-//     return cars.sort((a, b) => b.model.localeCompare(a.model));
-//   }
+//   mult() {
+//     return this.a * this.b;
+//   },
 // };
 
-// console.table(sortByModel(cars, 'asc'));
-// console.table(sortByModel(cars, 'desc'));
+// calculator.read(5, 5);
+// console.log(calculator);
 
-// Example 10 - Метод reduce
-// Пусть функция getTotalAmount возвращает общее количество автомобилей(значение свойств amount).
+// console.log(calculator.add()); // 10
+// console.log(calculator.mult()); // 25
 
-// const getTotalAmount = (cars) => {
-//   let sum = 0;
+// const students = [
+//   { name: 'Mango', score: 83, courses: ['mathematics', 'physics'] },
+//   { name: 'Poly', score: 59, courses: ['informatics', 'mathematics'] },
+//   { name: 'Ajax', score: 37, courses: ['physics', 'biology'] },
+//   { name: 'Kiwi', score: 94, courses: ['literature', 'informatics'] },
+// ];
 
-//   for (const car of cars) {
-//     sum += car.amount;
-//   }
+// const array = students.reduce((acc, { courses }) => {
+//   return [...acc, ...courses];
+// }, []);
 
-//   return sum;
-// };
+// console.log(array);
 
-// const getTotalAmount = (cars) => cars.reduce((sum, car) => sum + car.amount, 0);
+class Hero {
+  #name;
 
-// console.log(getTotalAmount(cars));
+  constructor(name = 'hero') {
+    this.#name = name;
+    this._xp = 0;
+  }
 
-// Example 11 - Цепочки методов
-// Пусть функция getAvailableCarNames возвращает массив моделей автомобилей, но только тех, которые сейчас на распродаже.
+  get name() {
+    return this.#name;
+  }
 
-// const getModelsOnSale = (cars) =>
-//   cars.filter(({ onSale }) => onSale).map(({ model }) => model);
+  set name(exp) {
+    this.#name = exp;
+  }
 
-// console.table(getModelsOnSale(cars));
+  get xp() {
+    return this._xp;
+  }
 
-// Example 12 - Цепочки методов
-// Пусть функция getSortedCarsOnSale возвращает массив автомобилей на распродаже (свойство onSale), отсортированных по возрастанию цены.
+  set xp(exp) {
+    this._xp += exp;
+  }
+}
 
-// const getSortedCarsOnSale = (cars) =>
-//   cars.filter(({ onSale }) => onSale).sort((a, b) => a.price - b.price);
+class Warrior extends Hero {
+  constructor(config) {
+    super(config);
 
-// console.table(getSortedCarsOnSale(cars));
+    (this.hp = 1500),
+      (this.fury = 100),
+      (this.skills = [
+        {
+          skill: 'Attack',
+          dmg: 200,
+          furyCost: 1,
+        },
+      ]);
+  }
+}
 
-// --- reduce vs map ---
-// const getModelsMAP = (cars) => cars.map((car) => car.model);
+const firstHero = new Warrior('besha2vox');
 
-// const getModelsReduce = (cars) =>
-//   cars.reduce((acc, car) => [...acc, car.model], []);
+console.log(firstHero);
+console.log(firstHero.xp);
+console.log(firstHero.name);
 
-// console.table(getModelsMAP(cars));
-// console.table(getModelsReduce(cars));
+firstHero.xp = 10;
+console.log(firstHero.xp);
+
+firstHero._xp = 100;
+console.log(firstHero.xp);
+
+// firstHero.#name = 'sdfgsdgf';
+firstHero.name = 'asffs';
+console.log(firstHero.name);

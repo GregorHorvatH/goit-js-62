@@ -1,414 +1,235 @@
-// class Cat {
-//   constructor(name) {
-//     this.name = name;
-//     this.legs = 4;
-//     this.age = 1;
-//   }
+// const num = ~~(Math.random() * 7 + 1);
+// let day = '';
 
-//   sayHello() {
-//     console.log(`meow name is ${this.name}`);
-//   }
+// switch (num) {
+//   case 1:
+//     day = 'понеділок';
+//     break;
 
-//   birthday() {
-//     console.log('Happy birthday!');
-//     this.age += 1;
-//   }
+//   case 2:
+//     day = 'вівторок';
+//     break;
+
+//   case 3:
+//     day = 'середа';
+//     break;
+
+//   case 4:
+//     day = 'четвер';
+//     break;
+
+//   case 5:
+//     day = "пят'ниця";
+//     break;
+
+//   case 6:
+//     day = 'субота';
+//     break;
+
+//   case 7:
+//     day = 'неділя';
+//     break;
 // }
 
-// const barsik = new Cat('Barsik');
-// const murka = new Cat('Murka');
-
-// console.log(barsik);
-// console.log(murka);
-
-// barsik.sayHello();
-// barsik.birthday();
-// console.log(barsik);
-
-// barsik.age = 15;
-// console.log(barsik);
-
-// ---- private ----
-// class Account {
-//   #balance;
-
-//   constructor(balance) {
-//     this.#balance = balance;
-//   }
-
-//   get balance() {
-//     return this.#balance;
-//   }
-
-//   set balance(amount) {
-//     this.#balance = amount;
-//   }
-
-//   getBalance() {
-//     return this.#balance;
-//   }
-
-//   setBalance(amount) {
-//     this.#balance = amount;
-//   }
-
-//   withdraw(amount) {
-//     if (amount <= this.#balance) {
-//       this.#balance -= amount;
-//     } else {
-//       console.log('not enough money');
-//     }
-//   }
-
-//   deposit(amount) {
-//     this.#balance += amount;
-//   }
+// if (num === 1) {
+//   day = 'понеділок';
+// } else if (num === 2) {
+//   day = 'вівторок';
+// } else if (num === 3) {
+//   day = 'середа';
+// } else if (num === 4) {
+//   day = 'четвер';
+// } else if (num === 5) {
+//   day = "пят'ниця";
+// } else if (num === 6) {
+//   day = 'субота';
+// } else if (num === 7) {
+//   day = 'неділя';
 // }
 
-// const account1 = new Account(100);
-// console.log(account1);
+// console.log(day);
 
-// account1.deposit(100);
-// console.log(account1);
+// --- querySelector / querySelectorAll ---
+// const ul = document.querySelector('ul');
+// console.log(ul);
 
-// account1.withdraw(50);
-// console.log(account1);
+// const lis = document.querySelectorAll('li');
+// console.log(lis);
 
-// account1.withdraw(250);
-
-// // account1.#balance = 10000000;
-// // console.log(account1.#balance);
-
-// account1.setBalance(500);
-// console.log(account1);
-
-// account1.balance = 600;
-// console.log(account1);
-
-// console.log(account1.getBalance());
-// console.log(account1.balance);
-
-// --- inheritance ---
-// class Human {
-//   constructor(name) {
-//     this.name = name;
-//   }
-
-//   sayHello() {
-//     console.log(`Hello, my name is ${this.name}`);
-//   }
-// }
-
-// class Doctor extends Human {
-//   healing() {
-//     console.log('I can heal');
-//   }
-
-//   // override
-//   sayHello() {
-//     console.log(`Hello, my name is dr.${this.name}`);
-//   }
-
-//   sum(a, b) {
-//     console.log(a + b);
-//   }
-// }
-
-// const bobby = new Human('Bobby');
-// console.log(bobby);
-// bobby.sayHello();
-
-// const house = new Doctor('House');
-// console.log(house);
-// house.sayHello();
-// house.healing();
-
-// house.sum(2, 2); // number
-// house.sum('Hello', ' word'); // string
-
-// --- static ---
-// class Utils {
-//   static PI = 3.14;
-
-//   static sum(a, b) {
-//     return a + b;
-//   }
-
-//   static sayHello() {
-//     console.log('Hello');
-//   }
-// }
-
-// console.log(Utils.PI);
-// console.log(Utils.sum(2, 2));
-
-// --- super ---
-// class Human {
-//   constructor({ name, age }) {
-//     this.name = name;
-//     this.age = age;
-//   }
-
-//   sayHello() {
-//     console.log(`Hello, my name is ${this.name}`);
-//   }
-// }
-
-// class Doctor extends Human {
-//   constructor({ experience = 0, ...rest }) {
-//     super(rest);
-//     this.experience = experience;
-//   }
-
-//   healing() {
-//     console.log('I can heal');
-//   }
-// }
-
-// const bobby = new Human({ name: 'Bobby', age: 15 });
-// const house = new Doctor({ name: 'House', age: 60, experience: 20 });
-
-// console.log(house);
-
-// Example 1 - Блоггер
-// Напиши класс Blogger для создания обьекта блоггера со следующим свойствами:
-
-// email - почта, строка
-// age - возраст, число
-// numberOfPosts - кол-во постов, число
-// topics - массив тем на которых специализируется блоггер
-// Класс ожидает один параметр - объект настроек с одноимёнными свойствами.
-
-// Добавь метод getInfo(), который, возвращает строку: User ${почта} is ${возраст} years old and has ${кол-во постов} posts.
-
-// Добавь метод updatePostCount(value), который в параметре value принимает количество постов которые нужно добавить пользователю.
-
-// class User {
-//   constructor({ name, age, numberOfPosts, topics }) {
-//     this.name = name;
-//     this.age = age;
-//     this.numberOfPosts = numberOfPosts;
-//     this.topics = topics;
-//   }
-
-//   getInfo() {
-//     return `User ${this.name} is ${this.age} years old and has ${this.numberOfPosts} posts`;
-//   }
-
-//   updatePostCount(value) {
-//     this.numberOfPosts += value;
-//   }
-// }
-
-// const mango = new User({
-//   name: 'mango@mail.com',
-//   age: 24,
-//   numberOfPosts: 20,
-//   topics: ['tech', 'cooking'],
+// lis.forEach((li, idx) => {
+//   li.style.fontSize = `${(idx + 1) * 10}px`;
 // });
 
-// console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 20 posts
-// mango.updatePostCount(5);
-// console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 25 posts
+// --- random image loading ---
+// const imageTemplate = (id) => `<li>
+//   <img class="image" data-id=${id} src="https://picsum.photos/400/200?random=${id}" />
+// </li>`;
 
-// const poly = new User({
-//   name: 'poly@mail.com',
-//   age: 19,
-//   numberOfPosts: 17,
-//   topics: ['sports', 'gaming', 'health'],
-// });
-// console.log(poly.getInfo()); // User poly@mail.com is 19 years old and has 17 posts
-// poly.updatePostCount(4);
-// console.log(poly.getInfo()); // User poly@mail.com is 19 years old and has 21 posts
+// const refs = {
+//   button: document.querySelector('.btn'),
+//   list: document.querySelector('.list'),
+//   form: document.querySelector('form'),
+// };
+// let id = 1;
 
-// Example 2 - Хранилище
-// Напиши класс Storage который создаёт объекты для управления складом товаров. При вызове будет получать один аргумент - начальный массив товаров, и записывать его в свойство items.
-
-// Добавь методы класса:
-
-// getItems() - возвращает массив товаров.
-// addItem(item) - получает новый товар и добавляет его к текущим.
-// removeItem(item) - получает товар и, если он есть, удаляет его из текущих.
-
-// class Storage {
-//   constructor(items) {
-//     this.items = items;
-//   }
-
-//   getItems() {
-//     return this.items;
-//   }
-
-//   addItem(item) {
-//     this.items.push(item);
-//   }
-
-//   removeItem(value) {
-//     this.items = this.items.filter((item) => item !== value);
-//   }
-// }
-
-// const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
-
-// const items = storage.getItems();
-// console.table(items); // [ '🍎', '🍋', '🍇', '🍑' ]
-
-// storage.addItem('🍌');
-// console.table(storage.items); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
-
-// storage.removeItem('🍋');
-// console.table(storage.items); // [ '🍎', '🍇', '🍑', '🍌' ]
-
-// Example 3 - User
-// Напиши класс User который создаёт объект со свойствами login и email. Объяви приватные свойства #login и #email, доступ к которым сделай через геттер и сеттер login и email.
-
-// class User {
-//   #login;
-//   #email;
-
-//   constructor({ login, email }) {
-//     this.#login = login;
-//     this.#email = email;
-//   }
-
-//   set login(value) {
-//     this.#login = value;
-//   }
-
-//   get login() {
-//     return this.#login;
-//   }
-
-//   set email(value) {
-//     this.#email = value;
-//   }
-
-//   get email() {
-//     return this.#email;
-//   }
-// }
-
-// const mango = new User({
-//   login: 'Mango',
-//   email: 'mango@dog.woof',
-// });
-
-// console.log(mango.login); // Mango
-// mango.login = 'Mangodoge';
-// console.log(mango.login); // Mangodoge
-
-// const poly = new User({
-//   login: 'Poly',
-//   email: 'poly@mail.com',
-// });
-
-// console.log(poly.login); // Poly
-// poly.login = 'Polycutie';
-// console.log(poly.login); // Polycutie
-
-// Example 4 - Заметки
-// Напиши класс Notes который управляет коллекцией заметок в свойстве items. Заметка это объект со свойствами text и priority. Добавь классу статическое свойство Priority, в котором будет храниться объект с приоритетами.
-
-// {
-//   LOW: 'low',
-//   NORMAL: 'normal',
-//   HIGH: 'high'
-// }
-// Добавь методы addNote(note), removeNote(text) и updatePriority(text, newPriority).
-
-// class Notes {
-//   static Priority = {
-//     LOW: 'low',
-//     NORMAL: 'normal',
-//     HIGH: 'high',
-//   };
-
-//   constructor(items) {
-//     this.items = items;
-//   }
-
-//   addNote(item) {
-//     this.items.push(item);
-//   }
-
-//   removeNote(noteText) {
-//     this.items = this.items.filter(({ text }) => text !== noteText);
-//   }
-
-//   updateNote(text, priority) {
-//     this.items = this.items.map((item) =>
-//       item.text === text ? { ...item, priority } : item
-//     );
-//   }
-// }
-
-// const myNotes = new Notes([]);
-
-// myNotes.addNote({ text: 'Моя первая заметка', priority: Notes.Priority.LOW });
-// console.log(myNotes.items);
-
-// myNotes.addNote({
-//   text: 'Моя вторая заметка',
-//   priority: Notes.Priority.NORMAL,
-// });
-// console.log(myNotes.items);
-
-// myNotes.removeNote('Моя первая заметка');
-// console.log(myNotes.items);
-
-// myNotes.updateNote('Моя вторая заметка', Notes.Priority.HIGH);
-// console.log(myNotes.items);
-
-// Example 5 - Toggle
-// Напишите класс Toggle который принимает объект настроек {isOpen: boolean} и объявляет одно свойство on - состояние вкл/выкл (true/false). По умолчанию значение свойства on должно быть false.
-
-// class Toggle {
-//   constructor({ on = false } = {}) {
-//     this.on = on;
-//   }
-
-//   toggle() {
-//     this.on = !this.on; // this.on = this.on === true ? false : true;
-//   }
-// }
-
-// const firstToggle = new Toggle({ on: true });
-
-// console.group('firstToggle');
-// console.log(firstToggle.on);
-// firstToggle.toggle();
-// console.log(firstToggle.on);
-// firstToggle.toggle();
-// console.log(firstToggle.on);
-// firstToggle.toggle();
-// console.log(firstToggle.on);
-// firstToggle.toggle();
-// console.log(firstToggle.on);
-// console.groupEnd('firstToggle');
-
-// const secondToggle = new Toggle();
-// console.group('secondToggle');
-// console.log(secondToggle.on);
-// secondToggle.toggle();
-// console.log(secondToggle.on);
-// secondToggle.toggle();
-// console.log(secondToggle.on);
-// secondToggle.toggle();
-// console.log(secondToggle.on);
-// secondToggle.toggle();
-// console.log(secondToggle.on);
-// console.groupEnd('secondToggle');
-
-// --- question ---
-// const animal = {
-//   legs: 4,
+// const addImage = () => {
+//   refs.list.insertAdjacentHTML('beforeend', imageTemplate(id++));
 // };
 
-// const dog = Object.create(animal);
+// const handleSubmit = (e) => {
+//   e.preventDefault();
 
-// console.log(animal); // тут в объекте 1 свойство
-// console.log('dog:', dog); // в прототипе 2 свойства. Почему, если в объект второе свойство добавляем ниже?
+//   const { login, password } = e.target.elements;
+//   const payload = { login: login.value, password: password.value };
 
-// animal.ddd = 5; // только тут добавляем в объект второе свойство
+//   console.log(payload);
+// };
 
-// console.log(animal.isPrototypeOf(dog));
+// refs.button.addEventListener('click', addImage);
+// // refs.button.removeEventListener('click', addImage);
+// refs.form.addEventListener('submit', handleSubmit);
+
+// --- callback ---
+// function fn1(name) {
+//   console.log('Hello', name);
+// }
+
+// function fn2(name) {
+//   // .... name
+
+//   fn1(name);
+// }
+
+// fn2('Bobby');
+
+// --- spread, rest ---
+// const obj = { name: 'Bobby', age: 15 };
+// const obj2 = { ...obj, eyes: 'brown' }; // spread
+
+// const numbers = [1, 2, 3];
+// console.log(Math.min(...numbers)); // spread
+
+// function fn({ age, ...rest }) {
+//   return rest;
+// }
+
+// console.log(fn({ name: 'Bobby', age: 15, eyes: 'blue' }));
+// console.log(fn({ name: 'Peter', age: 15, phone: '555-555-333' }));
+// console.log(fn({ name: 'Chris', age: 15, hair: 'blonde' }));
+
+// --- question ---
+// const inputEl = document.querySelector('#validation-input');
+// const dataLength = 6;
+
+// inputEl.addEventListener('blur', onInputBlur);
+
+// function toggle(class1, class2) {
+//   inputEl.classList.toggle(class1);
+//   inputEl.classList.replace(class2, class1);
+// }
+
+// function onInputBlur(event) {
+//   if (event.currentTarget.value.length === dataLength) {
+//     toggle('valid', 'invalid');
+//   } else {
+//     toggle('invalid', 'valid');
+//   }
+// }
+
+// --- map ---
+// const str = ['<li>google</li>', '<li>amazon</li>', 'facebook'];
+
+// console.log(str.join(''));
+
+// --- question ---
+// є задачка:
+// Напишіть функцію, яка глибоко знаходить перетин об'єктів і повертає об'єкт перетинів.
+// Очікуваний результат: intersectionDeep({ a: 1, b: { c: 3 } }, { c: 1, b: { c: 3 } }) => { b: { c: 3 } }
+//@param {Object} firstObj - об'єкт будь-яких значень
+//@param {Object} secondObj - об'єкт будь-яких значень
+//@повертає {Object}
+
+// Моє рішення:
+// const intersectionDeep = (firstObj, secondObj) => {
+//   const firstObjKeys = Object.keys(firstObj);
+
+//   return firstObjKeys.reduce((acc, key) => {
+//     if (firstObj[key] === secondObj[key]) {
+//       acc = {
+//         ...acc,
+//         [key]: firstObj[key],
+//       };
+//     } else if (
+//       typeof firstObj[key] === 'object' &&
+//       typeof secondObj[key] === 'object'
+//     ) {
+//       const fnIntersectionDeep = intersectionDeep(
+//         firstObj[key],
+//         secondObj[key]
+//       );
+
+//       if (Object.keys(fnIntersectionDeep).length !== 0) {
+//         acc = {
+//           ...acc,
+//           [key]: fnIntersectionDeep,
+//         };
+//       }
+//     }
+//     return acc;
+//   }, {});
+// };
+// console.log(intersectionDeep({ a: 1, b: { c: 3 } }, { c: 1, b: { c: 3 } }));
+
+// Рішення, яке пропонують:
+// const intersectionDeep = (firstObj, secondObj) => {
+//   const firstObjKeys = Object.keys(firstObj);
+
+//   return firstObjKeys.reduce((acc = {}, key) => {
+//     if (firstObj[key] === secondObj[key]) {
+//       acc = {
+//         ...acc,
+//         [key]: firstObj[key],
+//       };
+//     }
+
+//     if (Array.isArray(firstObj[key]) && Array.isArray(secondObj[key])) {
+//       const isEqualArrays = intersectionDeep(firstObj[key], secondObj[key]);
+
+//       if (isEqualArrays) {
+//         acc = {
+//           ...acc,
+//           [key]: firstObj[key],
+//         };
+//       }
+//     } else if (
+//       typeof firstObj[key] === 'object' &&
+//       typeof secondObj[key] === 'object'
+//     ) {
+//       const hasIntersection = intersectionDeep(firstObj[key], secondObj[key]);
+
+//       if (Object.keys(hasIntersection).length !== 0) {
+//         acc = {
+//           ...acc,
+//           [key]: hasIntersection,
+//         };
+//       }
+//     }
+//     return acc;
+//   }, {});
+// };
+
+// console.log(intersectionDeep({ a: 1, b: { c: 3 } }, { c: 1, b: { c: 3 } }));
+// console.log(intersectionDeep({ a: 1, b: { c: 3 } }, { a: 1, b: { c: 3 } }));
+// console.log(intersectionDeep({ a: 1, b: [1, 2, 3] }, { a: 1, b: [1, 2, 4] }));
+
+// Не розумію саме цю перевірку:
+// if (Array.isArray(firstObj[key]) && Array.isArray(secondObj[key])) {
+//       const isEqualArrays = isEqualDeep(firstObj[key], secondObj[key]);
+
+//       if (isEqualArrays) {
+//         acc = {
+//           ...acc,
+//           [key]: firstObj[key],
+//         };
+//       }
+// Поясніть, будь-ласка

@@ -5,8 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GoIT JS 61-62</title>
+    <style>
+      .list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+      }
+      .item {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid gray;
+        padding: 10px;
+      }
+      .link {
+        color: orange;
+        font-weight: bold;
+        font-size: 24px;
+      }
+    </style>
   </head>
   <body>
+    <form class="form">
+      <label>
+        <span>Text 1</span>
+        <input type="text" name="text" placeholder="Enter text..." />
+      </label>
+      <input type="password" name="password" placeholder="Enter password..." />
+
+      <button type="submit">+ Add</button>
+    </form>
+
+    <ul class="list"></ul>
+
     <script src="./index.js" type="module"></script>
   </body>
 </html>

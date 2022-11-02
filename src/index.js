@@ -1,62 +1,38 @@
-// import { Item } from './Item.js';
-// import { items } from './items.js';
+import { getItemTemplate } from './getItemTemplate.js';
+import { items } from './items.js';
 
-// const refs = {
-//   list: document.querySelector('.list'),
-//   form: document.querySelector('.form'),
-// };
+const refs = {
+  list: document.querySelector('.list'),
+  form: document.querySelector('.form'),
+};
 
-// const render = () => {
-//   const lis = items.map(Item);
+const render = () => {
+  const lis = items.map(getItemTemplate);
 
-//   refs.list.innerHTML = '';
-//   refs.list.insertAdjacentHTML('beforeend', lis.join(''));
-// };
+  refs.list.innerHTML = '';
+  refs.list.insertAdjacentHTML('beforeend', lis.join(''));
+};
 
-// const addItem = (e) => {
-//   e.preventDefault();
+const addItem = (text) => {
+  const payload = {
+    text,
+    isDone: false,
+  };
 
-//   const { value } = e.target.elements.text;
-//   const payload = {
-//     text: value,
-//     isDone: false,
-//   };
+  items.push(payload);
+};
 
-//   items.push(payload);
-//   render();
+const handleSubmit = (e) => {
+  const { value } = e.target.elements.text;
 
-//   refs.form.reset();
-// };
+  e.preventDefault();
+  addItem(value);
+  render();
+  refs.form.reset();
+};
 
-// // run
-// render();
+// run
+render();
 
-// // add event listeners
-// refs.form.addEventListener('submit', addItem);
-
-// --- append ---
-// <a class="link" href="https://google.com">Google</a>
-
-const link = document.createElement('a');
-link.href = 'https://google.com';
-link.textContent = 'Google';
-link.classList.add('link');
-link.id = 123;
-link.type = 'qwerty';
-
-link.setAttribute('wertyui', 'true');
-
-// const body = document.querySelector('body');
-// body.appendChild(link);
-
-console.log(link.outerHTML);
-
-// link.click();
-
-// --- formData ---
-// const data = new FormData();
-// data.append('name', 'Bobby');
-// data.append('age', '15');
-// data.append('eyes', 'blue');
-
-// console.log(Object.fromEntries(data));
+// add event listeners
+refs.form.addEventListener('submit', handleSubmit);

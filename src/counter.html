@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+  </head>
+  <body>
+    <label>
+      <span>step</span>
+      <select class="step">
+        <option value="1">1</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </label>
+
+    <button class="btn" data-action="decrement">-</button>
+    <span class="value">0</span>
+    <button class="btn" data-action="increment">+</button>
+
+    <script src="./counter.js" type="module"></script>
+  </body>
+</html>

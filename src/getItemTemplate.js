@@ -1,10 +1,18 @@
-export const getItemTemplate = ({ isDone, text }) => `<li class="item">
+export const getItemTemplate = ({
+  id,
+  isDone,
+  text,
+}) => `<li class="item" data-id="${id}">
   <div>
     <input
+      data-action="toggle"
       type="checkbox"
       ${isDone ? 'checked' : ''}
     />
     <span>${text}</span>
   </div>
-  <button type="button">x</button>
+  <div class="buttons">
+    <button data-action="view" class="btn" type="button">view</button>
+    <button data-action="delete" class="btn danger" type="button">x</button>
+  </div>
 </li>`;

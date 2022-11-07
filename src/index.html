@@ -5,20 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GoIT JS 61-62</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/basicLightbox/5.0.0/basicLightbox.min.css"
+    />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <form class="form">
       <label>
         <span>Text</span>
-        <input type="text" name="text" placeholder="Enter text..." />
+        <input
+          class="text-input"
+          type="text"
+          name="text"
+          placeholder="Enter text..."
+        />
       </label>
 
-      <button type="submit">+ Add</button>
+      <button class="btn success" type="submit">+ Add</button>
     </form>
 
     <ul class="list"></ul>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/basicLightbox/5.0.0/basicLightbox.min.js"></script>
     <script src="./index.js" type="module"></script>
   </body>
 </html>

@@ -42,7 +42,6 @@ const addItem = text => {
 };
 
 const handleSubmit = e => {
-  // const value = e.target.elements.text.value;
   const { value } = e.target.elements.text;
 
   e.preventDefault();
@@ -109,4 +108,5 @@ render();
 refs.form.addEventListener('submit', handleSubmit);
 refs.list.addEventListener('click', handleListClick);
 refs.modalButton.addEventListener('click', modal.close);
+
 window.addEventListener('keydown', handleKeyPress);

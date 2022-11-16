@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://gregorhorvath.github.io/goit-js-62",
   "scripts": {
     "start": "webpack-dev-server --env.mode development",
     "build": "webpack --env.mode production",
@@ -41,6 +42,7 @@
     "basiclightbox": "^5.0.4",
     "express": "^4.18.2",
     "handlebars": "^4.1.2",
+    "toastr": "^2.1.4",
     "uuid": "^8.3.2"
   }
 }

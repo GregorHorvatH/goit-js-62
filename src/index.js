@@ -1,9 +1,12 @@
 import * as basicLightbox from 'basiclightbox';
+import toastr from 'toastr';
 import { v4 } from 'uuid';
 
-import { getItemTemplate } from './getItemTemplate.js';
-import { items as importedItems } from './items.js';
+import { getItemTemplate } from './getItemTemplate';
+import { createTodo, fetchTodos, updateTodo, deleteTodo } from './todosApi';
 
+import './configToastr';
+import 'toastr/build/toastr.min.css';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import './style.css';
 
@@ -14,7 +17,7 @@ const modal = basicLightbox.create(`
   </div>
 `);
 
-let items = importedItems;
+let items = [];
 
 const refs = {
   list: document.querySelector('.list'),
@@ -24,30 +27,27 @@ const refs = {
 };
 
 const render = () => {
-  const lis = items.map(getItemTemplate);
+  const list = items.map(getItemTemplate);
 
   refs.list.innerHTML = '';
-  refs.list.insertAdjacentHTML('beforeend', lis.join(''));
-};
-
-const addItem = text => {
-  const payload = {
-    id: v4(),
-    text,
-    isDone: false,
-    created: new Date(),
-  };
-
-  items.push(payload);
+  refs.list.insertAdjacentHTML('beforeend', list.join(''));
 };
 
 const handleSubmit = e => {
   const { value } = e.target.elements.text;
+  const payload = {
+    id: v4(),
+    text: value,
+    isDone: false,
+    created: new Date(),
+  };
 
   e.preventDefault();
-  addItem(value);
+  createTodo(items);
+  items.push(payload);
   render();
   refs.form.reset();
+  // toastr.success('Todo created successfully');
 };
 
 const toggleItem = id => {
@@ -59,6 +59,7 @@ const toggleItem = id => {
         }
       : item,
   );
+  updateTodo(items);
 };
 
 const viewItem = id => {
@@ -70,7 +71,9 @@ const viewItem = id => {
 
 const deleteItem = id => {
   items = items.filter(item => item.id !== id);
+  deleteTodo(items);
   render();
+  toastr.success('Todo deleted successfully');
 };
 
 const handleListClick = e => {
@@ -101,7 +104,12 @@ const handleKeyPress = ({ code }) => {
   }
 };
 
+const loadData = () => {
+  items = fetchTodos();
+};
+
 // run
+loadData();
 render();
 
 // add event listeners

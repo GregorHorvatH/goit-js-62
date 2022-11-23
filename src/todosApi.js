@@ -7,10 +7,10 @@ export const createTodo = payload => {
 export const fetchTodos = () => {
   try {
     toastr.success('Todos loaded successfully');
-    return JSON.parse(localStorage.getItem('todos')) || [];
+    return Promise.resolve(JSON.parse(localStorage.getItem('todos')) || []);
   } catch (error) {
     toastr.error("can't load todos");
-    return [];
+    return Promise.resolve([]);
   }
 };
 

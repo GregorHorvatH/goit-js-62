@@ -105,13 +105,11 @@ const handleKeyPress = ({ code }) => {
   }
 };
 
-const loadData = () => {
-  items = fetchTodos();
-};
-
 // run
-loadData();
-render();
+fetchTodos().then(data => {
+  items = data;
+  render();
+});
 
 // add event listeners
 refs.form.addEventListener('submit', handleSubmit);

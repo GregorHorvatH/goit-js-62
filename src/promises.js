@@ -126,3 +126,14 @@
 // });
 
 // console.log('end');
+
+// --- Promise.resolve ---
+// const fn = () => {
+//   console.log('start');
+
+//   return Promise.resolve();
+// };
+
+// fn().then(() => {
+//   console.log('end');
+// });

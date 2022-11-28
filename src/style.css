@@ -67,3 +67,12 @@
   padding: 10px 25px;
   background-color: orange;
 }
+
+.news-loader {
+  display: none;
+  text-align: center;
+}
+
+.show {
+  display: block;
+}

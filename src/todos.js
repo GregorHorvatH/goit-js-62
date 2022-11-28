@@ -37,21 +37,24 @@ const render = () => {
 const handleSubmit = e => {
   const { value } = e.target.elements.text;
   const payload = {
-    id: v4(),
+    // id: v4(),
     text: value,
     isDone: false,
     created: new Date(),
   };
 
   e.preventDefault();
-  items.push(payload);
-  createTodo(items);
-  render();
-  refs.form.reset();
+  createTodo(payload).then(newTodo => {
+    items.push(newTodo);
+    render();
+    refs.form.reset();
+  });
   // toastr.success('Todo created successfully');
 };
 
 const toggleItem = id => {
+  const item = items.find(item => item.id === id);
+
   items = items.map(item =>
     item.id === id
       ? {
@@ -60,7 +63,8 @@ const toggleItem = id => {
         }
       : item,
   );
-  updateTodo(items);
+
+  updateTodo(id, { ...item, isDone: !item.isDone });
 };
 
 const viewItem = id => {
@@ -72,9 +76,10 @@ const viewItem = id => {
 
 const deleteItem = id => {
   items = items.filter(item => item.id !== id);
-  deleteTodo(items);
-  render();
-  toastr.success('Todo deleted successfully');
+  deleteTodo(id).then(() => {
+    render();
+    toastr.success('Todo deleted successfully');
+  });
 };
 
 const handleListClick = e => {
@@ -117,36 +122,3 @@ refs.list.addEventListener('click', handleListClick);
 refs.modalButton.addEventListener('click', modal.close);
 
 window.addEventListener('keydown', handleKeyPress);
-
-// ---- FormData ----
-// const form = new FormData();
-
-// form.append('name', 'Bobby');
-// form.append('age', 15);
-// form.append('eyes', 'blue');
-
-// console.log(form);
-// console.log(Object.fromEntries(form));
-
-// ---- closures ----
-// let x = 5;
-
-// function Fn(value) {
-//   return function fn() {
-//     console.log(value);
-//   };
-// }
-
-// const fn = Fn(x);
-// fn(x);
-
-// x += 1;
-// fn(x);
-
-// const id = setInterval(() => {
-//   console.log('hello');
-// }, 1000);
-
-// setTimeout(() => {
-//   clearInterval(id);
-// }, 5000);

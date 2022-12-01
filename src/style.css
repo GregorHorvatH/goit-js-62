@@ -1,3 +1,25 @@
+body {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.news {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 20px;
+}
+
+.news-list-wrapper {
+  flex: 1;
+  overflow: auto;
+}
+
 .text-input {
   padding: 5px 10px;
 }
@@ -75,4 +97,12 @@
 
 .show {
   display: block;
+}
+
+.active {
+  background-color: #28a745;
+}
+
+.error {
+  color: red;
 }

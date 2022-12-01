@@ -7,37 +7,47 @@
     <title>GoIT JS 61-62</title>
   </head>
   <body>
-    <div id="timer-1"></div>
-    <div id="timer-2"></div>
-    <div id="timer-3"></div>
+    <!-- <div class="todos">
+      <div id="timer-1"></div>
+      <div id="timer-2"></div>
+      <div id="timer-3"></div>
+  
+      <form class="my-form">
+        <label>
+          <span>Text</span>
+          <input
+            class="text-input"
+            type="text"
+            name="text"
+            placeholder="Enter text..."
+          />
+        </label>
+  
+        <button class="btn success" type="submit">+ Add</button>
+      </form>
+  
+      <ul class="list"></ul>  
+      <hr />
+    </todos> -->
 
-    <form class="my-form">
-      <label>
-        <span>Text</span>
-        <input
-          class="text-input"
-          type="text"
-          name="text"
-          placeholder="Enter text..."
-        />
-      </label>
+    <div class="news">
+      <form class="news-form">
+        <label>
+          <span>Query</span>
+          <input type="text" name="query" />
+        </label>
+        <button class="news-submit" type="submit">Search</button>
+      </form>
+      <span class="error"></span>
 
-      <button class="btn success" type="submit">+ Add</button>
-    </form>
+      <p class="news-loader">loading...</p>
 
-    <ul class="list"></ul>
+      <div class="news-list-wrapper">
+        <ul class="news-list"></ul>
+        <hr class="line" />
+      </div>
 
-    <hr />
-    <!-- <form class="news-form">
-      <label>
-        <span>Query</span>
-        <input type="text" name="query" />
-      </label>
-      <button class="news-submit" type="submit">Search</button>
-    </form>
-
-    <p class="news-loader">loading...</p>
-
-    <ul class="news-list"></ul> -->
+      <div class="pagination"></div>
+    </div>
   </body>
 </html>

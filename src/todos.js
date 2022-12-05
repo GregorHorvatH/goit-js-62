@@ -1,10 +1,9 @@
 import * as basicLightbox from 'basiclightbox';
 import toastr from 'toastr';
-import { v4 } from 'uuid';
 import moment from 'moment';
 
 import { getItemTemplate } from './getItemTemplate';
-import { createTodo, fetchTodos, updateTodo, deleteTodo } from './todosApi';
+import { createTodo, readTodos, updateTodo, deleteTodo } from './todosApi';
 
 import './configToastr';
 import 'toastr/build/toastr.min.css';
@@ -37,7 +36,6 @@ const render = () => {
 const handleSubmit = e => {
   const { value } = e.target.elements.text;
   const payload = {
-    // id: v4(),
     text: value,
     isDone: false,
     created: new Date(),
@@ -49,7 +47,6 @@ const handleSubmit = e => {
     render();
     refs.form.reset();
   });
-  // toastr.success('Todo created successfully');
 };
 
 const toggleItem = id => {
@@ -111,7 +108,7 @@ const handleKeyPress = ({ code }) => {
 };
 
 // run
-fetchTodos().then(data => {
+readTodos().then(data => {
   items = data;
   render();
 });

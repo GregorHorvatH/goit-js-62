@@ -108,10 +108,14 @@ const handleKeyPress = ({ code }) => {
 };
 
 // run
-readTodos().then(data => {
+async function initiate() {
+  const data = await readTodos();
+
   items = data;
   render();
-});
+}
+
+initiate();
 
 // add event listeners
 refs.form.addEventListener('submit', handleSubmit);

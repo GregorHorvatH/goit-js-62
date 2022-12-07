@@ -1,11 +1,10 @@
 import axios from 'axios';
 
+// axios.defaults.baseURL = 'http://localhost:3000';
 axios.defaults.baseURL = 'https://638506994ce192ac606aac6a.mockapi.io';
 
 export const createTodo = payload =>
-  axios
-    .post('/todos', payload)
-    .then(({ data }) => data);
+  axios.post('/todos', payload).then(({ data }) => data);
 
 export const readTodos = () =>
   axios
@@ -14,9 +13,7 @@ export const readTodos = () =>
     .catch(() => []);
 
 export const updateTodo = (id, payload) =>
-  axios
-    .put(`/todos/${id}`, payload)
-    .then(({ data }) => data);
+  axios.put(`/todos/${id}`, payload).then(({ data }) => data);
 
 export const deleteTodo = id =>
   axios
